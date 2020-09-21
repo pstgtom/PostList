@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="口酒井農業水利組合郵送会員住所録.exe" size="182184">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="口酒井農業水利組合郵送会員住所録.exe" size="158120">
       <assemblyIdentity name="口酒井農業水利組合郵送会員住所録" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>S/BYGIMwheRgyyVTTCBocIr+a4GthwlNS5X3uKq5XYk=</dsig:DigestValue>
+        <dsig:DigestValue>CgqXGbDVviNb6YAUX0jeTuL/v/dUtzOfPeRW3vZlv34=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

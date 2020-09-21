@@ -20,11 +20,10 @@ namespace 口酒井農業水利組合郵送会員住所録
     {
 
         //修正後のデータ受け取り配列変数
-        住所氏名編集Form fs;
+        //住所氏名編集Form fs;
 
-        String ServerConfig =
-            "Driver={PostgreSQL35W;database=test9meidb;Server=fertila;Port=5432;UID=kuchisakai;PWD=9mei5jikai;SSLmode=disable";
-
+         String connectionString =
+            "Driver={PostgreSQL35W};Server=fertila;Database=test9meidb;Port=5432;Uid=kuchisakai;Pwd=9mei5jikai;";
 
         public 住所録リストForm()
         {
@@ -38,18 +37,20 @@ namespace 口酒井農業水利組合郵送会員住所録
 
             ListView1呼出();
 
-            using (ObdcConnection myCon = new ObdcConnection(DerverConfig))
+
+            String SQLstr = "SELECT * FROM sender";
+
+            using (OdbcConnection connection = new OdbcConnection(connectionString))
             {
-                OdbcCommand command = new OdbcCommand(SQLstr, myCon);
+                OdbcCommand command =new OdbcCommand(SQLstr, connection);
+                connection.Open();
+                OdbcDataReader myRS = command.ExecuteReader();
+
+                差出人Box.Text = myRS[1].ToString();
+                差出人住所Box.Text = myRS[2].ToString();
+
+                myRS.Close();
             }
-
-            myCon.Open();
-            OdbcDataReader myRS = Command.ExecuteReader();
-
-            差出人Box.Text = myRS(1);
-            差出人住所Box.Text = myRS(2);
-
-            myRS.Close;
 
             MessageBox.Show("定型長３封筒に印刷してください。");
 
@@ -74,26 +75,27 @@ namespace 口酒井農業水利組合郵送会員住所録
  
             ListViewItem lvi;
 
-             String SQLstr = "SELECT * FROM 郵送名簿;";
+            String SQLstr = "SELECT * FROM 郵送名簿;";
 
-            using (ObdcConnection myCon = new ObdcConnection(DerverConfig))
+            using (OdbcConnection connection = new OdbcConnection(connectionString))
             {
-                OdbcCommand command = new OdbcCommand(SQLstr, myCon);
-            }
+                OdbcCommand command =new OdbcCommand(SQLstr,connection);
 
-            myCon.Open();
-            OdbcDataReader myRS = Command.ExecuteReader();
-            
-            while (myRS.Read())
-            {
-                lvi = listView1.Items.Add(myRS(0));
-                lvi.SubItems.Add(myRS(1));
-                lvi.SubItems.Add(myRS(2));
-                lvi.SubItems.Add(myRS(3));
-                lvi.SubItems.Add(myRS(4));
-            }
+                connection.Open();
+                OdbcDataReader myRS = command.ExecuteReader();
 
-            myRS.Close;
+                while (myRS.Read())
+                {
+                    lvi = listView1.Items.Add(myRS[0].ToString());
+                    lvi.SubItems.Add(myRS[1].ToString());
+                    lvi.SubItems.Add(myRS[2].ToString());
+                    lvi.SubItems.Add(myRS[3].ToString());
+                    lvi.SubItems.Add(myRS[4].ToString());
+                }
+
+                myRS.Close();
+
+            }
 
         }
 
