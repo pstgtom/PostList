@@ -19,7 +19,8 @@ namespace 口酒井農業水利組合郵送会員住所録
     {
 
         //修正後のデータ受け取り配列変数
-        //住所氏名編集Form fs;
+        住所氏名編集Form fs;
+        var conString = @"Server=fertila;Port=5432;Uid=kuchsakai;Pwd=9mei5jikai#;Database=test9mei;"
 
 
         public 住所録リストForm()
@@ -34,15 +35,17 @@ namespace 口酒井農業水利組合郵送会員住所録
 
             ListView1呼出();
 
-            //// セルの領域を選択
-            //var TableRange = 口酒井名簿.Range["A2"].CurrentRegion;
+            using (var myCon = new NpgsqlConnection(conString))
+            {
+                myCon.Open();
+                var SQLstr = new NpgsqlCommand(@"SELECT * FROM sender", myCon);
 
-            // 選択した領域の値をメモリー上に格納
-            object[,] Sender = 差出人.Value;
+                var dataReader = SQLstr.ExecuteReader();
 
-            // 選択した領域の値をメモリー上に格納
-            差出人Box.Text = (string)Sender[1, 1];
-            差出人住所Box.Text = (string)Sender[1, 2];
+                差出人Box.Text = dataReader[1];
+                差出人住所Box.Text = dataReader[2];
+
+            }
 
             MessageBox.Show("定型長３封筒に印刷してください。");
 
