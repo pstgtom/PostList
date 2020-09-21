@@ -20,7 +20,7 @@ namespace 口酒井農業水利組合郵送会員住所録
 
         //修正後のデータ受け取り配列変数
         住所氏名編集Form fs;
-        var conString = @"Server=fertila;Port=5432;Uid=kuchsakai;Pwd=9mei5jikai#;Database=test9mei;"
+        var conString = @"Server=fertila;Port=5432;Uid=kuchsakai;Pwd=9mei5jikai#;Database=test9meidb;"
 
 
         public 住所録リストForm()
@@ -78,17 +78,24 @@ namespace 口酒井農業水利組合郵送会員住所録
 
             ListViewItem lvi;
 
-            for (int i = 2; i <= values.GetLength(0); i++)
+            using (var myCon = new NpgsqlConnection(conString))
             {
-                lvi = listView1.Items.Add((String)values[i, 1].ToString());
-                lvi.SubItems.Add((string)values[i, 2]);
-                lvi.SubItems.Add((string)values[i, 3]);
-                lvi.SubItems.Add((string)values[i, 4]);
-                lvi.SubItems.Add((string)values[i, 5]);
+                myCon.Open();
+                var SQLstr = new NpgsqlCommand(@"SELECT * FROM 郵送名簿", myCon);
+
+                var dataReader = SQLstr.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    lvi = listView1.Items.Add(dataReader[0].ToString());
+                    lvi.SubItems.Add(dataReader[1].ToString());
+                    lvi.SubItems.Add(dataReader[2].ToString());
+                    lvi.SubItems.Add(dataReader[3].ToString());
+                    lvi.SubItems.Add(dataReader[4].ToString());
+                }
+
             }
 
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(TableRange);
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(sheet);
 
         }
 
