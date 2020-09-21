@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //using Excel = Microsoft.Office.Interop.Excel;
 using Npgsql;
-using System.Data;
 
 namespace 口酒井農業水利組合郵送会員住所録
 {
