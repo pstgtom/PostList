@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30503.244
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostList(ODBC)", "PostList(ODBC).csproj", "{94369737-B783-49D4-BC3A-60F404A892EF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94369737-B783-49D4-BC3A-60F404A892EF}.Debug|x86.ActiveCfg = Debug|x86
+		{94369737-B783-49D4-BC3A-60F404A892EF}.Debug|x86.Build.0 = Debug|x86
+		{94369737-B783-49D4-BC3A-60F404A892EF}.Release|x86.ActiveCfg = Release|x86
+		{94369737-B783-49D4-BC3A-60F404A892EF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3FE63A06-069A-41EA-B519-7D534F735B0A}
+	EndGlobalSection
+EndGlobal
